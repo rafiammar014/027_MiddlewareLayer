@@ -166,5 +166,8 @@ app.use((err, req, res, next) => {
     return errorResponse(res, "Internal Server Error", 500)
 })
 
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`)
+})
 
 
