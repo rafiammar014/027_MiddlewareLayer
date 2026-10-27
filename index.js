@@ -152,3 +152,9 @@ app.delete("/biodata/:id", validateParams(idSchema), async(req, res) => {
     return successResponse(res, "Data Berhasil Dihapus", result.rows[0])
 })
 
+//Route Not Found
+app.use((req, res) => {
+    return errorResponse(res, "Route Not Found", 404)
+})
+
+
