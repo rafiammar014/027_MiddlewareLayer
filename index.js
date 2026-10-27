@@ -102,3 +102,8 @@ function validateParams(schema) {
     next()
     }
 }
+
+app.get("/", async(req, res) => {
+    const result = await pool.query("SELECT * FROM biodata ORDER BY id")
+    return successResponse(res, "Data Berhasil Diambil", result.rows)
+})
