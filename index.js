@@ -157,4 +157,14 @@ app.use((req, res) => {
     return errorResponse(res, "Route Not Found", 404)
 })
 
+//global Error Handler
+app.use((err, req, res, next) => {
+    console.error(err)
+    if (res.headersSent) {
+        return next(err)
+    }
+    return errorResponse(res, "Internal Server Error", 500)
+})
+
+
 
