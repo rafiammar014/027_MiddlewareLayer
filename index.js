@@ -71,11 +71,34 @@ function validateBody(schema) {
         res,
         "Validation Error",
         400,
-        error.details.map(item => item ({
+        error.details.map(item =>({
             field: item.path.join('.'),
             message: item.message
         }))
     )
 }
-req.body = value,
-next()
+    req.body = value,
+    next()
+    }
+}
+
+
+//Middleware untuk validaasi params
+function validateParams(schema) {
+    return (req, res, next) => {
+        const { error, value } = schema.validate(req.params);
+    if (error) {
+        return errorResponse(
+        res,
+        "Parameter Validation Error",
+        400,
+        error.details.map(item =>({
+            field: item.path.join('.'),
+            message: item.message
+        }))
+    )
+}
+    req.params = value,
+    next()
+    }
+}
